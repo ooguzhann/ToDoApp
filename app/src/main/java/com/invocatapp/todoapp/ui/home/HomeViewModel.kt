@@ -19,12 +19,12 @@ class HomeViewModel @Inject constructor(
 
     val toDoList = repository.localDataSource.getAllToDo().asLiveData() // ekleme güncelleme işlemlerinde bu kod sürekli tetiklencek
 
-    fun insertToDo() {
-        viewModelScope.launch {
-            repository.localDataSource.insertToDo(ToDoModel(title = "Deneme", description =  "Deneme Açıklama", priority = Priority.HIGH, isChecked = true))
+    fun updateToDo(toDoModel: ToDoModel) {
+        val updatedToDoModel = toDoModel.copy(isChecked = toDoModel.isChecked?.not())
+        viewModelScope.launch{
+            repository.localDataSource.updateToDo(updatedToDoModel)
         }
     }
-
 }
 
 

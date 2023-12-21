@@ -23,8 +23,8 @@ class LocalDataSource @Inject constructor(
         toDoDao.updateToDo(toDoModel)
     }
 
-    suspend fun getToDo(toDoId:Int) {
-        toDoDao.getToDo(toDoId)
+    suspend fun getToDo(toDoId:Int):ToDoModel {
+        return toDoDao.getToDo(toDoId)
     }
 
     suspend fun deleteToDo(toDoModel: ToDoModel) {
